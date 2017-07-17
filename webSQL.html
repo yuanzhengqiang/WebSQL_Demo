@@ -36,7 +36,10 @@
 			var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
 			db.transaction(function (tx) {
 	            tx.executeSql('SELECT * FROM NAMES', [], function (tx, results) {
-	               var len = results.rows.length, i, msg = "";
+	                var len = results.rows.length, 
+	               		i = 0, 
+	               		msg = "";
+	               for (; i < len; i++) {
 	                	msg += "<li>" + results.rows[i].name + "</li>";
 	               }
 	               $("#nameList").append(msg);
