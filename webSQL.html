@@ -16,7 +16,9 @@
 	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 	<script type="text/javascript">
 		var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
-		
+		$(document).ready(function(){
+        	queryHistory();
+		}	
 		$("#add").on("click", function() {
 			var nameVal = $("#name").val();
 			if (nameVal != "") {
@@ -27,20 +29,18 @@
 				$("#nameList").append("<li>"+ nameVal +"</li>");
 			}
 		});
-		
-        queryHistory();
-			
          
 		function queryHistory() {
 			db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM NAMES', [], function (tx, results) {
-               var len = results.rows.length, i, msg;
-               for (i = 0; i < len; i++){
-                  msg = "<li>" + results.rows.item(i).log + "</li>";
-                  document.querySelector('#nameList').innerHTML +=  msg;
-               }
-            }, null);
-         });
+	            tx.executeSql('SELECT * FROM NAMES', [], function (tx, results) {
+	               var len = results.rows.length, i, msg;
+	               alert()
+	               for (i = 0; i < len; i++){
+	                	msg += "<li>" + results.rows.item(i).log + "</li>";
+	               }
+	               $("#nameList").append(msg);
+	            }, null);
+	        });
 		}
          
 
