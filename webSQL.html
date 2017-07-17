@@ -37,6 +37,7 @@
 			db.transaction(function (tx) {
 	            tx.executeSql('SELECT * FROM NAMES', [], function (tx, results) {
 	               var len = results.rows.length, i, msg = "";
+	               alert(len);
 	               for (i = 0; i < len; i++){
 	                	msg += "<li>" + results.rows[i].name + "</li>";
 	               }
